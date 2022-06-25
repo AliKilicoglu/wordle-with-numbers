@@ -1,5 +1,10 @@
+import Numpad from "../components/Numpad";
+import NumberInput from '../components/NumberInput'
 export default function Home() {
   return (
-    <h1 className="text-3xl">a</h1>
+    <div>
+      <NumberInput/>
+      <Numpad/>
+    </div>
   )
 }
