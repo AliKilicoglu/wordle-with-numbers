@@ -1,5 +1,6 @@
+import dynamic from 'next/dynamic'
 import Numpad from "../components/Numpad";
-import NumberInput from '../components/NumberInput'
+import NumberInput from '../components/NumberInput';
 export default function Home() {
   return (
     <div>
