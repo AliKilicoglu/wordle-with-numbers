@@ -9,6 +9,11 @@ module.exports = {
             'mobile': { 'raw': '(max-width: 800px)' },
             'desktop': { 'raw': '(min-width: 800px)' }
         },
+        colors: {
+            'green': '#538D4E',
+            'gray': '#3A3A3C',
+            'yellow': '#B59F3B'
+        },
         extend: {},
     },
     daisyui: {
