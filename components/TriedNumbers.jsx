@@ -4,26 +4,21 @@ import { triedNumbersAtom } from "../atoms/triedNumbersAtom"
 export default function TriedNumbers(){
     const [triedNumbers,setTriedNumbers] = useRecoilState(triedNumbersAtom)
     return (
-        <div className='flex w-screen'>
-        {
-            triedNumbers.map((triedNumber)=>{
-                return(
-                    <div className='absolute flex w-screen top-10 justify-center text-center h-max'>
-                        {
-                            triedNumber.map((numberValues)=>{
-                                console.log(numberValues.color)
-                                return  (
-                                    <div  style={{backgroundColor:numberValues.color}} className="flex  align-middle justify-center ml-2 h-12 w-12 border-spacing-1">
-                                        <p className='text-semibold text-white text-2xl'>{numberValues.number}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                )      
-            })
-      }
-      </div>
+        <div className='absolute bottom-60 w-screen flex justify-center '>
+            <div className=''>
+            {
+                triedNumbers.map(triedNumber=>{
+                    return (
+                        <div className='flex'>
+                            <p style={{backgroundColor:triedNumber[0].color}} className="flex   justify-center ml-2 mb-2 h-12 w-12 border-spacing-1 text-2xl" >{triedNumber[0].number}</p>
+                            <p style={{backgroundColor:triedNumber[1].color}} className="flex   justify-center ml-2 mb-2 h-12 w-12 border-spacing-1 text-2xl" >{triedNumber[1].number}</p>
+                            <p style={{backgroundColor:triedNumber[2].color}} className="flex   justify-center ml-2 mb-2 h-12 w-12 border-spacing-1 text-2xl" >{triedNumber[2].number}</p>
+                        </div>
+                    )
+                })
+            }
+            </div>
+        </div>
     )
 }
     

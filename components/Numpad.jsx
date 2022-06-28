@@ -102,7 +102,6 @@ export default function Numpad (){
                                 for (let i=0;i<3;i++){
                                     triedNumber[i].number=numbers[i]
                                     triedNumber[i].color=colors[i]
-                                    console.log(triedNumber[i])
                                 }
                                 setTriedNumbers([...triedNumbers,triedNumber])
                                 setNumberColors(['gray','gray','gray'])
