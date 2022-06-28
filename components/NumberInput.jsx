@@ -10,7 +10,9 @@ export default function NumberInput(){
     const [numberColors,setNumberColors] = useRecoilState(numberColorsAtom)
 
     return ( 
+        <>
         <div className="absolute flex w-screen top-24 justify-center text-center">
+        
             {
                 numbers.map((number,i)=>{
                     if(i === currentInput){
@@ -31,5 +33,6 @@ export default function NumberInput(){
                 })
             }
         </div>
+        </>
     )
 } 

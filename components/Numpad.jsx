@@ -2,6 +2,7 @@ import { useRecoilState } from 'recoil'
 import { numbersAtom } from "../atoms/numbersAtom"
 import { currentInputAtom } from "../atoms/CurrentInputAtom"
 import { numberColorsAtom } from "../atoms/numberColorsAtom"
+import { triedNumbersAtom } from '../atoms/triedNumbersAtom'
 
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { app, database } from '../firebaseConfig';
@@ -12,7 +13,7 @@ export default function Numpad (){
     const [numbers,setNumbers] = useRecoilState(numbersAtom)
     const [currentInput,setCurrentInput] = useRecoilState(currentInputAtom)
     const [numberColors,setNumberColors] = useRecoilState(numberColorsAtom)
-
+    const [triedNumbers,setTriedNumbers] = useRecoilState(triedNumbersAtom)
     const [todaysNumber,setTodaysNumber] = useState()
 
     const dbInstance = collection(database, 'numbers');
@@ -54,14 +55,14 @@ export default function Numpad (){
                     <div className="flex">
                         <button onClick={()=>{
                             if(number==='<'){
-                                let newNumbers = [...numbers]
-                                setNumberColors(['white','white','white'])
                                 if(numbers.findIndex((element)=> element === '')=== -1){
+                                    let newNumbers = [...numbers]
                                     newNumbers[2]=''
                                     setCurrentInput(2)
                                     setNumbers(newNumbers)
                                 }
                                 else{
+                                    let newNumbers = [...numbers]
                                     const lastFilledValue = numbers.findIndex((element)=> element === '')-1
                                     newNumbers[lastFilledValue] = ''
                                     setCurrentInput(lastFilledValue)
@@ -77,13 +78,36 @@ export default function Numpad (){
                                         colors[i]='green'
                                     }
                                     else if (parseTodaysNumber.findIndex((element)=> element === numbers[i])!== -1){
-                                        colors[i]='yellow'
+                                        colors[i]='#B59F3B' //yellow
                                     }
                                     else{
                                         colors[i]='gray'
                                     }
                                 }
                                 setNumberColors(colors)
+                                var triedNumber = [
+                                    {
+                                        number:'',
+                                        color:''
+                                    },
+                                    {
+                                        number:'',
+                                        color:''
+                                    },
+                                    {
+                                        number:'',
+                                        color:''
+                                    },
+                                ]
+                                for (let i=0;i<3;i++){
+                                    triedNumber[i].number=numbers[i]
+                                    triedNumber[i].color=colors[i]
+                                    console.log(triedNumber[i])
+                                }
+                                setTriedNumbers([...triedNumbers,triedNumber])
+                                setNumberColors(['gray','gray','gray'])
+                                setNumbers(['','',''])
+                                setCurrentInput(0)
                             }
                             else {
                                 
