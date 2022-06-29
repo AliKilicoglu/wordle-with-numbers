@@ -9,10 +9,11 @@ export default function Home() {
   const [triedNumbers,setTriedNumbers] = useRecoilState(triedNumbersAtom)
   return (
     <div>
-      <h1 className="absolute  bottom-0">{triedNumbers.length} kez denedin</h1>
+      <h1 className="absolute  bottom-5 text-xl">{triedNumbers.length} kez denedin {5 - triedNumbers.length} hakkın kaldı</h1>
       <NumberInput/>
       <TriedNumbers/>
       <Numpad/>
+      <h1 className="absolute bottom-0 underline cursor-pointer text-xl">Nasıl oynanır</h1>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { triedNumbersAtom } from "../atoms/triedNumbersAtom"
 export default function TriedNumbers(){
     const [triedNumbers,setTriedNumbers] = useRecoilState(triedNumbersAtom)
     return (
-        <div className='absolute bottom-60 w-screen flex justify-center '>
+        <div className='absolute bottom-60 w-screen  flex justify-center	'>
             <div className=''>
             {
                 triedNumbers.map(triedNumber=>{

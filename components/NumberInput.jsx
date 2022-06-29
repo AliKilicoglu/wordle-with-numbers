@@ -18,7 +18,7 @@ export default function NumberInput(){
                     if(i === currentInput){
                         return (
                             <div style={{backgroundColor:numberColors[i]}} className="flex  align-middle justify-center ml-2 h-15 w-15 border-spacing-1">
-                                <p  className="text-3xl text-white " id={i}> _ </p>
+                                <p  className="text-3xl text-white " key={i} id={i}> _ </p>
                             </div>
                                 )
                     }
