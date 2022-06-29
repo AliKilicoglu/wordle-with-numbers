@@ -9,6 +9,8 @@ import { app, database } from '../firebaseConfig';
 
 import { useEffect , useState} from 'react';
 
+import { toast } from 'react-hot-toast'
+
 export default function Numpad (){
     const [numbers,setNumbers] = useRecoilState(numbersAtom)
     const [currentInput,setCurrentInput] = useRecoilState(currentInputAtom)
@@ -70,43 +72,50 @@ export default function Numpad (){
                                 }
                             }
                             else if (number === "enter") {
-                                const today = getToday()
-                                const parseTodaysNumber = Array.from(todaysNumber[0][today])
-                                var colors = ['','','']
-                                for(let i=0;i < 3;i++){
-                                    if(numbers[i] === parseTodaysNumber[i]){
-                                        colors[i]='green'
-                                    }
-                                    else if (parseTodaysNumber.findIndex((element)=> element === numbers[i])!== -1){
-                                        colors[i]='#B59F3B' //yellow
-                                    }
-                                    else{
-                                        colors[i]='gray'
-                                    }
+                                if (numbers[0]==='' || numbers[1]==='' || number[2]===''){
+                                    toast.error('sayıda boşluk bulunamaz')
                                 }
-                                setNumberColors(colors)
-                                var triedNumber = [
-                                    {
-                                        number:'',
-                                        color:''
-                                    },
-                                    {
-                                        number:'',
-                                        color:''
-                                    },
-                                    {
-                                        number:'',
-                                        color:''
-                                    },
-                                ]
-                                for (let i=0;i<3;i++){
-                                    triedNumber[i].number=numbers[i]
-                                    triedNumber[i].color=colors[i]
+
+                                else  {
+
+                                    const today = getToday()
+                                    const parseTodaysNumber = Array.from(todaysNumber[0][today])
+                                    var colors = ['','','']
+                                    for(let i=0;i < 3;i++){
+                                        if(numbers[i] === parseTodaysNumber[i]){
+                                            colors[i]='green'
+                                        }
+                                        else if (parseTodaysNumber.findIndex((element)=> element === numbers[i])!== -1){
+                                            colors[i]='#B59F3B' //yellow
+                                        }
+                                        else{
+                                            colors[i]='gray'
+                                        }
+                                    }
+                                    setNumberColors(colors)
+                                    var triedNumber = [
+                                        {
+                                            number:'',
+                                            color:''
+                                        },
+                                        {
+                                            number:'',
+                                            color:''
+                                        },
+                                        {
+                                            number:'',
+                                            color:''
+                                        },
+                                    ]
+                                    for (let i=0;i<3;i++){
+                                        triedNumber[i].number=numbers[i]
+                                        triedNumber[i].color=colors[i]
+                                    }
+                                    setTriedNumbers([...triedNumbers,triedNumber])
+                                    setNumberColors(['gray','gray','gray'])
+                                    setNumbers(['','',''])
+                                    setCurrentInput(0)
                                 }
-                                setTriedNumbers([...triedNumbers,triedNumber])
-                                setNumberColors(['gray','gray','gray'])
-                                setNumbers(['','',''])
-                                setCurrentInput(0)
                             }
                             else {
                                 
